@@ -18,6 +18,8 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.elvina.carphotogallery.R
+import com.elvina.carphotogallery.ui.screens.HomeScreen
+import com.elvina.carphotogallery.ui.screens.HomeScreenViewModel
 
 @Composable
 fun CarPhotoGalleryApp() {
@@ -26,7 +28,9 @@ fun CarPhotoGalleryApp() {
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = { GalleryTopAppBar(scrollBehavior = scrollBehavior) }
     ) {
-        Surface(modifier = Modifier.fillMaxSize().padding(it)) {
+        Surface(modifier = Modifier
+            .fillMaxSize()
+            .padding(it)) {
             val homeScreenViewModel: HomeScreenViewModel = viewModel(factory = HomeScreenViewModel.Factory)
             HomeScreen(
                 uiState = homeScreenViewModel.uiState,
