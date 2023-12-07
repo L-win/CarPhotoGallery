@@ -4,6 +4,7 @@ import com.elvina.carphotogallery.model.Photo
 import retrofit2.http.GET
 
 interface UnsplashApiService {
-    @GET("collections")
+//    @Headers("clientId: " + "")
+    @GET("collections/2102317/photos")
     suspend fun getCollectionPhotos(): List<Photo>
 }

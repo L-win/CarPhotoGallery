@@ -7,13 +7,12 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
-import retrofit2.create
 
 interface AppContainer {
     val carCollectionRepository: CarCollectionRepository
 }
 
-class DefaulAppContainer : AppContainer {
+class DefaultAppContainer : AppContainer {
     private val baseUrl: String = "https://api.unsplash.com/"
 
     private val retrofit: Retrofit = Retrofit.Builder()
