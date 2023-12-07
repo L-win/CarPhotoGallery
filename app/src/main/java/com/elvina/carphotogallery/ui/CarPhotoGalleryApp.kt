@@ -21,6 +21,7 @@ import com.elvina.carphotogallery.R
 import com.elvina.carphotogallery.ui.screens.HomeScreen
 import com.elvina.carphotogallery.ui.screens.HomeScreenViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CarPhotoGalleryApp() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -28,18 +29,21 @@ fun CarPhotoGalleryApp() {
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = { GalleryTopAppBar(scrollBehavior = scrollBehavior) }
     ) {
-        Surface(modifier = Modifier
-            .fillMaxSize()
-            .padding(it)) {
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(it)
+        ) {
             val homeScreenViewModel: HomeScreenViewModel = viewModel(factory = HomeScreenViewModel.Factory)
             HomeScreen(
-                uiState = homeScreenViewModel.uiState,
-                reteryAction = homeScreenViewModel::getCarPhotos
+                homeScreenUiState = homeScreenViewModel.homeSreenUiState,
+                retryAction = homeScreenViewModel::getCarPhotos
             )
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GalleryTopAppBar(scrollBehavior: TopAppBarScrollBehavior, modifier: Modifier = Modifier) {
     CenterAlignedTopAppBar(
