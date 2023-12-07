@@ -1,14 +1,20 @@
 
 #### About
 
-CarPhotoGallery is an application that fetches and displays photos from Unsplash using API.
+CarPhotoGallery is an application that fetches and displays photos from internet using Unsplash API.
 
+#### Stack
+
+- retrofit
+- compose
+- viewmodel
+- dependency injection
 
 #### TODO
 
 **Architecture**
 - Data
-	- Repository
+	- Repository (interface, implementation)
 - Model
 	- MarsPhoto
 - Network
