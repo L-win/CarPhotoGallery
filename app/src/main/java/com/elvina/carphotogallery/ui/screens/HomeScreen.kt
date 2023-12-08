@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,7 +35,7 @@ fun HomeScreen(
 ) {
     when (homeScreenUiState) {
         is HomeScreenUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
-        is HomeScreenUiState.Success -> null
+        is HomeScreenUiState.Success -> PhotoGridScreen(homeScreenUiState.photos, modifier = modifier.fillMaxSize())
         is HomeScreenUiState.Error -> ErrorScreen(retryAction, modifier = modifier.fillMaxSize())
     }
 }
@@ -47,6 +48,8 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
 //        painter = painterResource(R.drawable.loading_img),
 //        contentDescription = stringResource(R.string.loading)
 //    )
+    //TODO: Temporary
+    Text(text = "loading")
 }
 
 @Composable
@@ -60,6 +63,9 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
 //            // TODO: Drawable resource missing
 //            painter = painterResource(id = R.drawable.ic_connection_error), contentDescription
 //        )
+
+        //TODO: Temporary
+        Text(text = "Error")
     }
 }
 
@@ -91,18 +97,22 @@ fun CarPhotoCard(photo: Photo, modifier: Modifier = Modifier) {
         shape = MaterialTheme.shapes.medium,
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
-//        AsyncImage(
-//            model = ImageRequest.Builder(context = LocalContext.current)
-//                .data(photo.src)
-//                .crossfade(true)
-//                .build(),
-//            // TODO: Missing resources
+        AsyncImage(
+            model = ImageRequest.Builder(context = LocalContext.current)
+                .data(photo.src)
+                .crossfade(true)
+                .build(),
+            // TODO: Missing resources
 //            error = painterResource(R.drawable.ic_broken_image),
 //            placeholder = painterResource(R.drawable.loading_img),
 //            contentDescription = stringResource(R.string.mars_photo),
-//            contentScale = ContentScale.Crop,
-//            modifier = Modifier.fillMaxWidth()
-//
-//            )
+
+            //TODO: Temporary
+            contentDescription = "carphoto",
+
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxWidth()
+
+        )
     }
 }
