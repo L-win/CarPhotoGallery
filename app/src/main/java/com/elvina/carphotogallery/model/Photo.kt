@@ -8,7 +8,9 @@ data class Photo(
     @SerialName("id")
     val id: String,
     @SerialName("color")
-    val color: String
+    val color: String,
+    @SerialName("urls")
+    val urls: Urls
 
 //    val slug: String?,
 //    val created_at: String?,
@@ -20,12 +22,25 @@ data class Photo(
 //    val description: null,
 //    val alt_description: String,
 //    val breadcrumbs: E,
-//    val urls: Object,
 //    val links	object,
 //    val likes	int,
-//    val liked_by_user	bulean,
+//    val liked_by_user	boolean,
 //    val current_user_collections	array,
 //    val sponsorship	null,
 //    val topic_submissions	object
 
+)
+
+@Serializable
+data class Urls(
+    @SerialName("raw")
+    val raw: String,
+    @SerialName("full")
+    val full: String,
+    @SerialName("regular")
+    val regular: String,
+    @SerialName("small")
+    val small: String,
+    @SerialName("thumb")
+    val thumb: String
 )
