@@ -1,5 +1,6 @@
 package com.elvina.carphotogallery.ui.screens
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -28,22 +29,26 @@ class HomeScreenViewModel(
 ) : ViewModel() {
     var homeSreenUiState: HomeScreenUiState by mutableStateOf(HomeScreenUiState.Loading)
         private set
+
     init {
         getCarPhotos()
     }
 
-    fun getCarPhotos(){
-        viewModelScope.launch{
+    fun getCarPhotos() {
+        viewModelScope.launch {
             homeSreenUiState = HomeScreenUiState.Loading
-            homeSreenUiState = try{
+            homeSreenUiState = try {
                 HomeScreenUiState.Success(repository.getCollectionPhotos())
-            }catch(e: IOException){
+            } catch (e: IOException) {
+                Log.v("MyDebug", "Ioexception", e)
                 HomeScreenUiState.Error
-            }catch(e: HttpException){
+            } catch (e: HttpException) {
+                Log.v("MyDebug", "HttpException", e)
                 HomeScreenUiState.Error
             }
         }
     }
+
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {

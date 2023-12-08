@@ -97,22 +97,20 @@ fun CarPhotoCard(photo: Photo, modifier: Modifier = Modifier) {
         shape = MaterialTheme.shapes.medium,
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
-        AsyncImage(
-            model = ImageRequest.Builder(context = LocalContext.current)
-                .data(photo.src)
-                .crossfade(true)
-                .build(),
-            // TODO: Missing resources
-//            error = painterResource(R.drawable.ic_broken_image),
-//            placeholder = painterResource(R.drawable.loading_img),
-//            contentDescription = stringResource(R.string.mars_photo),
-
-            //TODO: Temporary
-            contentDescription = "carphoto",
-
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxWidth()
-
-        )
+//        AsyncImage(
+//            model = ImageRequest.Builder(context = LocalContext.current)
+//                .data(photo.src)
+//                .crossfade(true)
+//                .build(),
+//            // TODO: Missing resources
+////            error = painterResource(R.drawable.ic_broken_image),
+////            placeholder = painterResource(R.drawable.loading_img),
+////            contentDescription = stringResource(R.string.mars_photo),
+//            //TODO: Temporary
+//            contentDescription = "carphoto",
+//            contentScale = ContentScale.Crop,
+//            modifier = Modifier.fillMaxWidth()
+//        )
+        Text(photo.color, modifier = Modifier.fillMaxWidth())
     }
 }

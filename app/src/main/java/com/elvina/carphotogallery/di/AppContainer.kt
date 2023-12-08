@@ -15,8 +15,10 @@ interface AppContainer {
 class DefaultAppContainer : AppContainer {
     private val baseUrl: String = "https://api.unsplash.com/"
 
+    private val json = Json { ignoreUnknownKeys = true }
+
     private val retrofit: Retrofit = Retrofit.Builder()
-        .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .baseUrl(baseUrl)
         .build()
 
