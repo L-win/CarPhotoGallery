@@ -49,7 +49,7 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
 //        contentDescription = stringResource(R.string.loading)
 //    )
     //TODO: Temporary
-    Text(text = "loading")
+    Text(text = "Loading images...")
 }
 
 @Composable
@@ -65,7 +65,7 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
 //        )
 
         //TODO: Temporary
-        Text(text = "Error")
+        Text(text = "Error!")
     }
 }
 
@@ -95,7 +95,7 @@ fun CarPhotoCard(photo: Photo, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier,
         shape = MaterialTheme.shapes.medium,
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
     ) {
         AsyncImage(
             model = ImageRequest.Builder(context = LocalContext.current)
@@ -107,11 +107,9 @@ fun CarPhotoCard(photo: Photo, modifier: Modifier = Modifier) {
 //            placeholder = painterResource(R.drawable.loading_img),
 //            contentDescription = stringResource(R.string.mars_photo),
             //TODO: Temporary
-            contentDescription = "carphoto",
+            contentDescription = "car photo",
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxWidth()
         )
-//        Text(photo.color, modifier = Modifier.fillMaxWidth())
-//        Text(photo.urls.raw, modifier = Modifier.fillMaxWidth())
     }
 }
