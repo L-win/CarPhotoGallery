@@ -10,9 +10,10 @@ data class Photo(
     @SerialName("color")
     val color: String,
     @SerialName("urls")
-    val urls: Urls
+    val urls: Urls,
+    @SerialName("slug")
+    val slug: String
 
-//    val slug: String?,
 //    val created_at: String?,
 //    val updated_at: String?,
 //    val promoted_at: String?,
