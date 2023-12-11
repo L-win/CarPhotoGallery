@@ -1,15 +1,19 @@
 package com.elvina.carphotogallery.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -59,13 +63,14 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-//        Image(
-//            // TODO: Drawable resource missing
-//            painter = painterResource(id = R.drawable.ic_connection_error), contentDescription
-//        )
-
-        //TODO: Temporary
-        Text(text = "Error!")
+        Image(
+            painter = painterResource(id = R.drawable.ic_no_connection), contentDescription = "No internet connection"
+        )
+        Text(text = "Something went wrong!")
+        Spacer(modifier = Modifier.size(30.dp))
+        Button(onClick = retryAction) {
+            Text("Retry")
+        }
     }
 }
 

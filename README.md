@@ -1,29 +1,27 @@
 
-#### About
-
+### About
 CarPhotoGallery is an application that fetches and displays photos from internet using Unsplash API.
 
-#### Stack
+### Api key
+Api key (client_id) is required for building the project.
 
+### Stack
 - retrofit
 - compose
 - viewmodel
 - dependency injection
 
-#### TODO
-
+### Todo
 **Architecture**
 - Data
-	- Repository (interface, implementation)
+	- [x] Repository (interface, implementation)
 - Model
-	- MarsPhoto
+	- [x] MarsPhoto
+	- [x] Urls
 - Network
-	- MarsApiService (retrofit interface)
+	- [x] MarsApiService (retrofit interface)
+	- [ ] Api key storage
 - DI
-	- AppContainer
-		- retrofit
-		- retrofitService
-		- repository
+	- [x] AppContainer
 - Ui
-	- screens
-	- theme
+	- [ ] Home screen
