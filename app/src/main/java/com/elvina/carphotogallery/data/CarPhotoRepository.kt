@@ -4,11 +4,11 @@ import com.elvina.carphotogallery.model.Photo
 import com.elvina.carphotogallery.network.UnsplashApiService
 
 interface CarPhotoRepository {
-    suspend fun getPhoto(url: String): Photo
+    suspend fun getPhoto(id: String): Photo
 }
 
 class CarPhotoRepositoryImpl(
     private val unsplashApiService: UnsplashApiService
 ) : CarPhotoRepository {
-    override suspend fun getPhoto(url: String): Photo = unsplashApiService.getPhoto(url = url)
+    override suspend fun getPhoto(id: String): Photo = unsplashApiService.getPhoto(id = id)
 }

@@ -42,6 +42,8 @@ fun HomeScreen(
         is HomeScreenUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
         is HomeScreenUiState.Success -> PhotoGridScreen(homeScreenUiState.photos, modifier = modifier.fillMaxSize())
         is HomeScreenUiState.Error -> ErrorScreen(retryAction, modifier = modifier.fillMaxSize())
+        // TODO WTF?
+        else -> null
     }
 }
 

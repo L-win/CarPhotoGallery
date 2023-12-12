@@ -29,6 +29,7 @@ fun PhotoScreen(
 //        is PhotoScreenUiState.Loading ->
 //        is PhotoScreenUiState.Success ->
 //        is PhotoScreenUiState.Error ->
+        else -> null
     }
 }
 
