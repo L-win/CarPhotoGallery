@@ -1,12 +1,10 @@
 package com.elvina.carphotogallery.ui.screens
 
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -27,33 +25,30 @@ fun PhotoScreen(
 ) {
     when (photoScreenUiState) {
 //        is PhotoScreenUiState.Loading ->
-//        is PhotoScreenUiState.Success ->
+        is PhotoScreenUiState.Success -> PhotoLargeScreen(
+            photoScreenUiState.photo, modifier = modifier.fillMaxSize()
+        )
 //        is PhotoScreenUiState.Error ->
+        //TODO: temporary
         else -> null
     }
 }
 
 
 @Composable
-fun PhotoLargeScreen(photos: List<Photo>, modifier: Modifier = Modifier) {
-    LazyVerticalGrid(
-        columns = GridCells.Adaptive(150.dp),
-        modifier = modifier,
-        contentPadding = PaddingValues(4.dp)
+fun PhotoLargeScreen(photo: Photo, modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.padding(20.dp)
     ) {
-        items(
-            items = photos,
-            key = { photo -> photo.id }
-        ) { photo ->
-            CarPhotoCardLarge(
-                photo, modifier = modifier
-                    .padding(4.dp)
-                    .fillMaxWidth()
-                    .aspectRatio(1.5f)
-            )
-        }
+        CarPhotoCardLarge(
+            photo = photo, modifier = modifier
+                .padding(4.dp)
+                .fillMaxWidth()
+                .aspectRatio(1.5f)
+        )
     }
 }
+
 
 @Composable
 fun CarPhotoCardLarge(photo: Photo, modifier: Modifier = Modifier) {
