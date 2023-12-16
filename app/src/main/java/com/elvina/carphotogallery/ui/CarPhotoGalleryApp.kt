@@ -17,9 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.elvina.carphotogallery.R
 import com.elvina.carphotogallery.ui.screens.HomeScreen
 import com.elvina.carphotogallery.ui.screens.HomeScreenViewModel
+import com.elvina.carphotogallery.ui.screens.PhotoScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -34,11 +38,20 @@ fun CarPhotoGalleryApp() {
                 .fillMaxSize()
                 .padding(it)
         ) {
+            val navController = rememberNavController()
             val homeScreenViewModel: HomeScreenViewModel = viewModel(factory = HomeScreenViewModel.Factory)
-            HomeScreen(
-                homeScreenUiState = homeScreenViewModel.homeSreenUiState,
-                retryAction = homeScreenViewModel::getCarPhotos
-            )
+
+            NavHost(navController = navController, startDestination = "HomeScreen") {
+                composable("HomeScreen") {
+                    HomeScreen(
+                        homeScreenUiState = homeScreenViewModel.homeSreenUiState,
+                        retryAction = homeScreenViewModel::getCarPhotos
+                    )
+                }
+                composable("PhotoScreen") {
+//                    PhotoScreen()
+                }
+            }
         }
     }
 }
