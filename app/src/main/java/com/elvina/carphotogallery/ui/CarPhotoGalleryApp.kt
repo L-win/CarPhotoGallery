@@ -45,7 +45,8 @@ fun CarPhotoGalleryApp() {
                 composable("HomeScreen") {
                     HomeScreen(
                         homeScreenUiState = homeScreenViewModel.homeSreenUiState,
-                        retryAction = homeScreenViewModel::getCarPhotos
+                        retryAction = homeScreenViewModel::getCarPhotos,
+                        navController = navController
                     )
                 }
                 composable("PhotoScreen") {

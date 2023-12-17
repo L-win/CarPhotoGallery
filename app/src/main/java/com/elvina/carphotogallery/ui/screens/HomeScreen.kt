@@ -1,6 +1,7 @@
 package com.elvina.carphotogallery.ui.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -27,6 +28,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.elvina.carphotogallery.R
@@ -36,11 +38,17 @@ import com.elvina.carphotogallery.model.Photo
 fun HomeScreen(
     homeScreenUiState: HomeScreenUiState,
     retryAction: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController
 ) {
     when (homeScreenUiState) {
         is HomeScreenUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
-        is HomeScreenUiState.Success -> PhotoGridScreen(homeScreenUiState.photos, modifier = modifier.fillMaxSize())
+        is HomeScreenUiState.Success -> PhotoGridScreen(
+            homeScreenUiState.photos,
+            modifier = modifier.fillMaxSize(),
+            navController = navController
+        )
+
         is HomeScreenUiState.Error -> ErrorScreen(retryAction, modifier = modifier.fillMaxSize())
         // TODO WTF?
         else -> null
@@ -79,7 +87,7 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun PhotoGridScreen(photos: List<Photo>, modifier: Modifier = Modifier) {
+fun PhotoGridScreen(photos: List<Photo>, modifier: Modifier = Modifier, navController: NavController) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(150.dp),
         modifier = modifier,
@@ -93,16 +101,22 @@ fun PhotoGridScreen(photos: List<Photo>, modifier: Modifier = Modifier) {
                 photo, modifier = modifier
                     .padding(4.dp)
                     .fillMaxWidth()
-                    .aspectRatio(1.5f)
+                    .aspectRatio(
+                        1.5f
+                    ),
+                navController = navController
+
             )
         }
     }
 }
 
 @Composable
-fun CarPhotoCard(photo: Photo, modifier: Modifier = Modifier) {
+fun CarPhotoCard(photo: Photo, modifier: Modifier = Modifier, navController: NavController) {
     Card(
-        modifier = modifier,
+        modifier = modifier.clickable {
+            navController.navigate("PhotoScreen")
+        },
         shape = MaterialTheme.shapes.medium,
         elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
     ) {
