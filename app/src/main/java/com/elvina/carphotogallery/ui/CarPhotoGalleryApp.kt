@@ -24,6 +24,7 @@ import com.elvina.carphotogallery.R
 import com.elvina.carphotogallery.ui.screens.HomeScreen
 import com.elvina.carphotogallery.ui.screens.HomeScreenViewModel
 import com.elvina.carphotogallery.ui.screens.PhotoScreen
+import com.elvina.carphotogallery.ui.screens.PhotoScreenViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,6 +41,7 @@ fun CarPhotoGalleryApp() {
         ) {
             val navController = rememberNavController()
             val homeScreenViewModel: HomeScreenViewModel = viewModel(factory = HomeScreenViewModel.Factory)
+            val photoScreenViewModel: PhotoScreenViewModel = viewModel(factory = PhotoScreenViewModel.Factory)
 
             NavHost(navController = navController, startDestination = "HomeScreen") {
                 composable("HomeScreen") {
@@ -49,8 +51,13 @@ fun CarPhotoGalleryApp() {
                         navController = navController
                     )
                 }
-                composable("PhotoScreen") {
-//                    PhotoScreen()
+                composable("PhotoScreen/{id}") {
+                    val id = it.arguments?.getString("id") ?: "id"
+                    PhotoScreen(
+                        photoScreenUiState = photoScreenViewModel.photoScreenUiState,
+                        navController = navController,
+                        id = id
+                    )
                 }
             }
         }

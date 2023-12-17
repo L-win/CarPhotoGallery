@@ -8,11 +8,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.elvina.carphotogallery.model.Photo
@@ -20,15 +22,18 @@ import com.elvina.carphotogallery.model.Photo
 @Composable
 fun PhotoScreen(
     photoScreenUiState: PhotoScreenUiState,
-    retryAction: () -> Unit,
-    modifier: Modifier = Modifier
+//    retryAction: () -> Unit,
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    id: String
 ) {
     when (photoScreenUiState) {
-//        is PhotoScreenUiState.Loading ->
+        is PhotoScreenUiState.Loading -> Loading()
         is PhotoScreenUiState.Success -> PhotoLargeScreen(
             photoScreenUiState.photo, modifier = modifier.fillMaxSize()
         )
-//        is PhotoScreenUiState.Error ->
+
+        is PhotoScreenUiState.Error -> Error(id)
         //TODO: temporary
         else -> null
     }
@@ -66,5 +71,21 @@ fun CarPhotoCardLarge(photo: Photo, modifier: Modifier = Modifier) {
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxWidth()
         )
+    }
+}
+
+@Composable
+fun Error(id: String) {
+    Column() {
+        Text("Error")
+        Text(id)
+    }
+
+}
+
+@Composable
+fun Loading() {
+    Column() {
+        Text("Loading")
     }
 }

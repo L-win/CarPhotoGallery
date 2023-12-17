@@ -115,7 +115,7 @@ fun PhotoGridScreen(photos: List<Photo>, modifier: Modifier = Modifier, navContr
 fun CarPhotoCard(photo: Photo, modifier: Modifier = Modifier, navController: NavController) {
     Card(
         modifier = modifier.clickable {
-            navController.navigate("PhotoScreen")
+            navController.navigate("PhotoScreen" + "/{id}=asdsd")
         },
         shape = MaterialTheme.shapes.medium,
         elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)

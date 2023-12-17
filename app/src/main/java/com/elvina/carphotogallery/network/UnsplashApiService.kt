@@ -7,8 +7,13 @@ import retrofit2.http.Query
 
 interface UnsplashApiService {
     @GET("collections/2102317/photos")
-    suspend fun getCollectionPhotos(@Query("client_id") clientId: String = ""): List<Photo>
+    suspend fun getCollectionPhotos(
+        @Query("client_id") clientId: String = ""
+    ): List<Photo>
 
     @GET("photos/{id}")
-    suspend fun getPhoto(@Query("client_id") client: String = "", @Path("id") id: String): Photo
+    suspend fun getPhoto(
+        @Path("id") id: String = "FKJgBUDoVC0",
+        @Query("client_id") client: String = "",
+    ): Photo
 }
