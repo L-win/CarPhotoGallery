@@ -29,16 +29,16 @@ class PhotoScreenViewModel(
     var photoScreenUiState: PhotoScreenUiState by mutableStateOf(PhotoScreenUiState.Loading)
         private set
 
-    init {
-        getCarPhoto()
-    }
+//    init {
+//        getCarPhoto(id = "123")
+//    }
 
-    fun getCarPhoto() {
+    fun getCarPhoto(id: String) {
         viewModelScope.launch {
             photoScreenUiState = PhotoScreenUiState.Loading
             photoScreenUiState = try {
                 //TODO: pass photo id
-                PhotoScreenUiState.Success(repository.getPhoto(id = "123"))
+                PhotoScreenUiState.Success(repository.getPhoto(id = id))
             } catch (e: IOException) {
                 PhotoScreenUiState.Error
             } catch (e: HttpException) {

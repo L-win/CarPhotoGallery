@@ -51,10 +51,12 @@ fun CarPhotoGalleryApp() {
                         navController = navController
                     )
                 }
+                //TODO Pass ViewModel
                 composable("PhotoScreen/{id}") {
                     val id = it.arguments?.getString("id") ?: "id"
                     PhotoScreen(
-                        photoScreenUiState = photoScreenViewModel.photoScreenUiState,
+//                        photoScreenUiState = photoScreenViewModel.photoScreenUiState,
+                        photoScreenViewModel = photoScreenViewModel,
                         navController = navController,
                         id = id
                     )

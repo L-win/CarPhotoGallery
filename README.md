@@ -10,22 +10,15 @@ Api key (client_id) is required for building the project.
 
 - retrofit
 - compose
-- viewmodel
+- viewModel
 - dependency injection
 
 ### Todo
 
 - Data
-    - [x] Repository (interface, implementation)
     - [ ] Single Photo repository
-- Model
-    - [x] MarsPhoto
-    - [x] Urls
 - Network
-    - [x] MarsApiService (retrofit interface)
     - [ ] Api key storage
-- DI
-    - [x] AppContainer
 - Ui
     - [ ] Home screen
     - [ ] Photo view screen

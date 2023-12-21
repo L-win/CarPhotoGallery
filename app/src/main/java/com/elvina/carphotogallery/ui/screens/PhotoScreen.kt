@@ -1,5 +1,6 @@
 package com.elvina.carphotogallery.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,12 +22,16 @@ import com.elvina.carphotogallery.model.Photo
 
 @Composable
 fun PhotoScreen(
-    photoScreenUiState: PhotoScreenUiState,
+//    photoScreenUiState: PhotoScreenUiState,
 //    retryAction: () -> Unit,
+    photoScreenViewModel: PhotoScreenViewModel,
     modifier: Modifier = Modifier,
     navController: NavController,
     id: String
 ) {
+    photoScreenViewModel.getCarPhoto(id)
+    val photoScreenUiState: PhotoScreenUiState = photoScreenViewModel.photoScreenUiState
+    Log.d("MyT", photoScreenUiState.photo)
     when (photoScreenUiState) {
         is PhotoScreenUiState.Loading -> Loading()
         is PhotoScreenUiState.Success -> PhotoLargeScreen(
@@ -37,6 +42,8 @@ fun PhotoScreen(
         //TODO: temporary
         else -> null
     }
+
+
 }
 
 
